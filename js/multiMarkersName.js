@@ -3,6 +3,8 @@
 //Global Variable
 var markersURLArray=[];
 var markersNameArray=[];
+var modelsURLArray = []; // Array to store URLs of 3D models
+
 
 AFRAME.registerComponent('markers_start',{
 	init:function(){
@@ -17,6 +19,10 @@ AFRAME.registerComponent('markers_start',{
 			markersURLArray.push(url);
 			markersNameArray.push('Marker_'+i);
 			//console.log(url);
+
+			 // Assuming your 3D models are named as model-1.gltf, model-2.gltf, etc.
+            		var modelUrl = "resources/models/model-" + i + ".gltf";
+            		modelsURLArray.push(modelUrl);
 		}
 
 		for(var k=0; k<18; k++)
@@ -30,14 +36,24 @@ AFRAME.registerComponent('markers_start',{
 			sceneEl.appendChild(markerEl);
 
 			//Adding text to each marker
-			var textEl = document.createElement('a-entity');
+			//var textEl = document.createElement('a-entity');
 			
-			textEl.setAttribute('id','text');
-			textEl.setAttribute('text',{color: 'red', align: 'center', value:markersNameArray[k], width: '5.5'});
-			textEl.object3D.position.set(0, 0.7, 0);
-			textEl.object3D.rotation.set(-90, 0, 0);
+			//textEl.setAttribute('id','text');
+			//textEl.setAttribute('text',{color: 'red', align: 'center', value:markersNameArray[k], width: '5.5'});
+			//textEl.object3D.position.set(0, 0.7, 0);
+			//textEl.object3D.rotation.set(-90, 0, 0);
 
-			markerEl.appendChild(textEl);
+			//markerEl.appendChild(textEl);
+
+			// Adding a 3D model to each marker
+            		var modelEl = document.createElement('a-entity');
+           		 modelEl.setAttribute('gltf-model', `url(${modelsURLArray[k]})`);
+            		modelEl.setAttribute('id', 'model');
+            		modelEl.object3D.position.set(0, 0.7, 0);
+            		modelEl.object3D.rotation.set(-90, 0, 0);
+			modelEl.object3D.scale.set(0.5, 0.5, 0.5);
+
+            		markerEl.appendChild(modelEl);
 		}
 	}
 });
