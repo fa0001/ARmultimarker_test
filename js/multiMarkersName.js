@@ -50,8 +50,7 @@ AFRAME.registerComponent('markers_start',{
            		 modelEl.setAttribute('gltf-model', `url(${modelsURLArray[k]})`);
             		modelEl.setAttribute('id', 'model');
             		modelEl.object3D.position.set(0, 0.7, 0);
-            		modelEl.object3D.rotation.set(-90, 0, 0);
-			modelEl.object3D.scale.set(0.5, 0.5, 0.5);
+            		modelEl.object3D.rotation.set(0, 0, 0);
 
             		markerEl.appendChild(modelEl);
 		}
