@@ -4,7 +4,6 @@
 var markersURLArray=[];
 var markersNameArray=[];
 var modelsURLArray = []; // Array to store URLs of 3D models
-var videosURLArray=[]; // array to store video
 
 AFRAME.registerComponent('markers_start',{
 	init:function(){
@@ -24,9 +23,6 @@ AFRAME.registerComponent('markers_start',{
             		var modelUrl = "resources/models/model-" + i + ".gltf";
             		modelsURLArray.push(modelUrl);
 
-			 // Assuming your videos are named as video-1.mp4, video-2.mp4, etc.
-            		var videoUrl = "resources/videos/video-" + i + ".mp4";
-            		videosURLArray.push(videoUrl);
 		}
 
 		for(var k=0; k<18; k++)
@@ -57,16 +53,6 @@ AFRAME.registerComponent('markers_start',{
             		modelEl.object3D.rotation.set(0, 0, 0);
 
             		markerEl.appendChild(modelEl);
-
-			// Adding a video to each marker
-            		var videoEl = document.createElement('a-entity');
-           		videoEl.setAttribute('mp4-video', `url(${videosURLArray[k]})`);
-            		videoEl.setAttribute('id', 'video');
-            		videoEl.object3D.position.set(0, 0.7, 0);
-            		videoEl.object3D.rotation.set(0, 0, 0);
-			videoEl.object3D.scale.set(0.5, 0.5, 0.5);
-
-            		videoEl.appendChild(videoEl);
 		}
 	}
 });
